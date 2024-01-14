@@ -111,10 +111,11 @@ void renderer::draw::box(D3DXVECTOR2 tl, D3DXVECTOR2 br, D3DCOLOR color)
 		tl,
 		D3DXVECTOR2(tl.x,br.y),
 		br,
-		D3DXVECTOR2(br.x,tl.y)
+		D3DXVECTOR2(br.x,tl.y),
+		tl
 	};
 
 	mLine->Begin();
-	mLine->Draw(list, 4, color);
+	mLine->Draw(list, 5, color);
 	mLine->End();
 }
