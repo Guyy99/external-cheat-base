@@ -46,16 +46,3 @@ uintptr_t memory::GetModuleBaseAddress(uintptr_t procID, const wchar_t* module)
 	return 0;
 }
 
-template<typename T>
-T memory::Read(uintptr_t address)
-{
-	T ret;
-	ReadProcessMemory(gHandle, address, &ret, sizeof(T), nullptr);
-	return ret;
-}
-
-template<typename T>
-bool memory::Write(uintptr_t address, T value)
-{
-	return WriteProcessMemory(gHandle, address, &value, sizeof(T), nullptr);
-}
