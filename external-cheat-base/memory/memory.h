@@ -16,12 +16,12 @@ namespace memory
 	template <typename T> T Read(uintptr_t address)
 	{
 		T ret;
-		ReadProcessMemory(gHandle, address, &ret, sizeof(T), nullptr);
+		ReadProcessMemory(gHandle, (LPCVOID)address, &ret, sizeof(T), nullptr);
 		return ret;
 	}
 	template <typename T> bool Write(uintptr_t address, T value)
 	{
-		return WriteProcessMemory(gHandle, address, &value, sizeof(T), nullptr);
+		return WriteProcessMemory(gHandle, (LPVOID)address, &value, sizeof(T), nullptr);
 	}
 
 
