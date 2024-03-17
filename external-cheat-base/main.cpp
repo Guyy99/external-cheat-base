@@ -13,7 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         return -1;
     }
 
-    while (!GetAsyncKeyState(VK_F9))
+    while (!GetAsyncKeyState(VK_F9)  && renderer::running)
     {
         renderer::frame();
     }
