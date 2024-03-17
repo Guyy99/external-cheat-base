@@ -71,6 +71,7 @@ void renderer::frame()
 	pDevice->BeginScene();
 
 	// render here
+	renderer::draw::line(D3DXVECTOR2(0, 0), D3DXVECTOR2(1920, 1080), D3DCOLOR_XRGB(255, 0, 0));
 
 	pDevice->EndScene();
 	pDevice->Present(NULL, NULL, NULL, NULL);
@@ -127,3 +128,4 @@ void renderer::handle_events()
             DispatchMessage(&msg);
         }
 }
+
