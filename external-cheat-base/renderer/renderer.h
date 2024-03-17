@@ -11,17 +11,6 @@
 #define WINDOW_W 1920
 #define WINDOW_H 1080
 
-namespace window
-{
-	HWND InitWindow(HINSTANCE hInstance);
-	inline LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-	{
-		return DefWindowProc(hWnd, message, wParam, lParam);
-	}
-
-
-}
-
 namespace renderer
 {
 	inline IDirect3D9* pD3D = nullptr;
@@ -29,6 +18,7 @@ namespace renderer
 	inline ID3DXLine* mLine = nullptr;
 
 	inline MSG msg;
+	inline bool running = true;
 
 	bool init(HWND hwnd);
 	void destroy();
@@ -42,7 +32,37 @@ namespace renderer
 		void box(D3DXVECTOR2 tl, D3DXVECTOR2 br, D3DCOLOR color);
 	}
 
-
-
 };
+
+namespace window
+{
+	HWND InitWindow(HINSTANCE hInstance);
+	inline LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+	{
+		LRESULT Result = 0;
+		switch (message)
+		{
+		case WM_DESTROY:
+		{
+			renderer::running = false;
+			break;
+		}
+		case WM_CLOSE:
+		{
+			renderer::running = false;
+			break;
+		}
+		default:
+		{
+			Result = DefWindowProc(hWnd, message, wParam, lParam);
+			break;
+		}
+
+		}
+		return Result;
+	}
+
+
+}
+
 
