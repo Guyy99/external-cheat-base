@@ -28,6 +28,8 @@ namespace renderer
 	inline IDirect3DDevice9* pDevice = nullptr;
 	inline ID3DXLine* mLine = nullptr;
 
+	inline MSG msg;
+
 	bool init(HWND hwnd);
 	void destroy();
 
