@@ -65,7 +65,7 @@ bool renderer::init(HWND hwnd)
 
 void renderer::frame()
 {
-	//pDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
+	handle_events();
 	pDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, NULL, 1.0f, 0);
 
 	pDevice->BeginScene();
@@ -117,4 +117,13 @@ void renderer::draw::box(D3DXVECTOR2 tl, D3DXVECTOR2 br, D3DCOLOR color)
 	mLine->Begin();
 	mLine->Draw(list, 5, color);
 	mLine->End();
+}
+
+void renderer::handle_events()
+{
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+        {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
 }
