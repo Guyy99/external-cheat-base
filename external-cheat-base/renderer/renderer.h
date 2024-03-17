@@ -32,6 +32,7 @@ namespace renderer
 	void destroy();
 
 	void frame();
+	void handle_events();
 
 	namespace draw
 	{
